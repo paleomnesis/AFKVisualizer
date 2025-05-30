@@ -1,0 +1,9 @@
+name: AFKVisualizer
+version: '0.1.0'
+main: me.paleomnesis.AFKVisualizer.AFKVisualizer
+api-version: '1.21'
+authors: [ paleomnesis ]
+commands:
+  afkstatus:
+    description: Shows currently AFK players.
+    usage: /afkstatus

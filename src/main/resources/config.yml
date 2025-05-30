@@ -1,0 +1,8 @@
+afk-threshold-seconds: 120
+particle-type: CLOUD
+particle-interval-ticks: 40
+
+messages:
+  no-afk-players: "&7There are no AFK players right now."
+  afk-list-header: "&eCurrently AFK players:"
+  afk-list-entry: "&b- {player}"
