@@ -1,4 +1,4 @@
-afk-threshold-seconds: 120
+afk-threshold-seconds: 5
 particle-type: CLOUD
 particle-interval-ticks: 40
 

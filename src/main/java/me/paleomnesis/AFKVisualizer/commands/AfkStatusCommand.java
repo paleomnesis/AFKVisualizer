@@ -2,13 +2,14 @@ package me.paleomnesis.AFKVisualizer.commands;
 
 import me.paleomnesis.AFKVisualizer.afk.AfkManager;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
+import works.paleomnesis.text.Message;
 
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class AfkStatusCommand implements CommandExecutor {
         long thresholdMillis = 1000L * config.getInt("afk-threshold-seconds", 120);
         List<Player> afkPlayers = afkManager.getAfkPlayers(thresholdMillis);
 
-        String header = getMessage(config, "messages.afk-list-header", "&eCurrently AFK players:");
-        String entryFormat = getMessage(config, "messages.afk-list-entry", "&b- {player}");
-        String none = getMessage(config, "messages.no-afk-players", "&7There are no AFK players right now.");
+        String header = Message.colored(config.getString("messages.afk-list-header", "&eCurrently AFK players:"));
+        String entryFormat = config.getString("messages.afk-list-entry", "&b- {player}");
+        String none = Message.colored(config.getString("messages.no-afk-players", "&7There are no AFK players right now."));
 
         if (afkPlayers.isEmpty()) {
             sender.sendMessage(none);
@@ -40,13 +41,10 @@ public class AfkStatusCommand implements CommandExecutor {
 
         sender.sendMessage(header);
         for (Player p : afkPlayers) {
-            sender.sendMessage(entryFormat.replace("{player}", p.getName()));
+            String entry = Message.colored(entryFormat.replace("{player}", p.getName()));
+            sender.sendMessage(entry);
         }
 
         return true;
-    }
-
-    private String getMessage(FileConfiguration config, String path, String def) {
-        return ChatColor.translateAlternateColorCodes('&', config.getString(path, def));
     }
 }

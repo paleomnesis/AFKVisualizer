@@ -3,8 +3,11 @@ package me.paleomnesis.AFKVisualizer;
 import me.paleomnesis.AFKVisualizer.afk.AfkManager;
 import me.paleomnesis.AFKVisualizer.afk.ParticleEffectTask;
 import me.paleomnesis.AFKVisualizer.commands.AfkStatusCommand;
+
 import org.bukkit.Particle;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import works.paleomnesis.logging.Logger;
 
 public final class AFKVisualizer extends JavaPlugin {
 
@@ -46,7 +49,7 @@ public final class AFKVisualizer extends JavaPlugin {
         try {
             return Particle.valueOf(name.toUpperCase());
         } catch (IllegalArgumentException e) {
-            getLogger().warning("Invalid particle type in config: " + name + ". Falling back to CLOUD.");
+            Logger.warn("Invalid particle type in config: " + name + ". Falling back to CLOUD.");
             return Particle.CLOUD;
         }
     }
